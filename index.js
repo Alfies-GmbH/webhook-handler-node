@@ -25,11 +25,11 @@ const handleHook = (req, res) => {
             console.error(`Error:\n${error.message}`);
             return res.status(500).send({success: false, error: error.message});
         }
+        console.log(`${stdout}`);
         if (stderr) {
             console.error(`Error:\n${stderr}`);
-            return res.status(500).send({success: false});
+            //return res.status(500).send({success: false});
         }
-        console.log(`stdout: ${stdout}`);
         res.send({success: true});
     });
 };
