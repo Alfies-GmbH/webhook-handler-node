@@ -8,7 +8,7 @@ app.get('/status', (req, res) => {
     res.send({success: true})
 });
 
-app.get('/hook/:hookId', (req, res) => {
+const handleHook = (req, res) => {
     let hookId = (req.params.hookId || '').replace(/[^a-zA-Z0-9]*/, '');    
     let hook = Config.hooks[hookId];
 
@@ -32,8 +32,10 @@ app.get('/hook/:hookId', (req, res) => {
         console.log(`stdout: ${stdout}`);
         res.send({success: true});
     });
-    
-});
+};
+
+app.get('/hook/:hookId', handleHook);
+app.post('/hook/:hookId', handleHook);
   
 app.listen(Config.port, () => {
     console.log(`hoook running @ http://localhost:${Config.port}`)
