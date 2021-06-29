@@ -1,0 +1,22 @@
+{
+  "name": "hoook",
+  "version": "1.0.0",
+  "description": "simple nodejs webhook server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://waquner@github.com/waquner/hoook.git"
+  },
+  "author": "Stefan Wagner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/waquner/hoook/issues"
+  },
+  "homepage": "https://github.com/waquner/hoook#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
