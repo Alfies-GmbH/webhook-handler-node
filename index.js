@@ -4,6 +4,8 @@ const { exec } = require("child_process");
 
 const Config = require('./config.json');
 
+app.use(express.json());
+
 app.get('/status', (req, res) => {
     res.send({success: true})
 });
@@ -20,7 +22,21 @@ const handleHook = (req, res) => {
         return res.status(401).send({success: false, error: 'key incorrect.'})
     }
 
-    exec(hook.cmd, (error, stdout, stderr) => {
+    let cmd;
+
+    if(hook.branches){
+        let branch = req.body.ref;
+        cmd = hook.branches[branch]?.cmd;
+
+    } else {
+        cmd = hook.cmd;
+    }
+
+    if(!cmd){
+        return res.status(200).send({success: true, error: 'No cmd.'});
+    }    
+
+    exec(cmd, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error:\n${error.message}`);
             return res.status(500).send({success: false, error: error.message});
