@@ -26,7 +26,7 @@ const handleHook = (req, res) => {
 
     if(hook.branches){
         let branch = req.body.ref;
-        cmd = hook.branches[branch]?.cmd;
+        cmd = hook.branches[branch] ? hook.branches[branch].cmd : null;
 
     } else {
         cmd = hook.cmd;
